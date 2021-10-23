@@ -5,13 +5,13 @@ This is a Dockerfile to run TorchServe for Yolov5 object detection model.
 
 ## Setting up the Docker image
 
-1) Build the Torch Serve image locally. More info [here](https://github.com/pytorch/serve/tree/master/docker)
+* Build the Torch Serve image locally. More info [here](https://github.com/pytorch/serve/tree/master/docker)
  
-2) After training the Yolov5 model on COLAB, move the `best.pt` to the resources folder.
+* After training the Yolov5 model on COLAB, move the `best.pt` to the resources folder.
 
-3) Modify `index_to_name.json` to include any additional classes if needed.
+* Modify `index_to_name.json` to include any additional classes if needed.
 
-4) Modifying `batch_size` and `image_size` can be done:
+* Modifying `batch_size` and `image_size` can be done:
     * In the `Dockerfile`: 
         ```bash
         RUN python /home/model-server/resources/yolov5/models/export.py --weights /home/model-server/resources/best.pt --img 416 --batch 16
@@ -27,7 +27,7 @@ This is a Dockerfile to run TorchServe for Yolov5 object detection model.
             self.img_size = 416
         ```
 
-5) The docker image is ready to be built and used:
+* The docker image is ready to be built and used:
     ```bash
     docker build . -t your_tag:your_version
     docker run your_tag:your_version
