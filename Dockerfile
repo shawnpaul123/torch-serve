@@ -12,8 +12,6 @@ RUN apt-get install -y python3-distutils
 
 # Copy local files into image
 COPY ./resources/ /home/model-server/resources/
-COPY ./config/config.properties /home/model-server/config.properties
-COPY ./config/log4j.properties /home/model-server/log4j.properties
 
 RUN chmod -R a+rw /home/model-server/
 
@@ -32,7 +30,7 @@ EXPOSE 8080 8081
 ENV PYTHONPATH "${PYTHONPATH}:/home/model-server/resources/yolov5/"
 
 # Build and ship ML model (.mar)
-RUN python /home/model-server/resources/yolov5/models/export.py --weights /home/model-server/resources/best.pt --img 416 --batch 16
+RUN python /home/model-server/resources/yolov5/models/export.py --weights /home/model-server/resources/best.pt --img 416 --batch-size 16 --inplace --include torchscript
 RUN torch-model-archiver --model-name asl_classifier \
 --version 0.1 --serialized-file /home/model-server/resources/best.torchscript.pt \
 --handler /home/model-server/resources/torchserve_handler.py \
@@ -40,5 +38,5 @@ RUN torch-model-archiver --model-name asl_classifier \
 RUN mv asl_classifier.mar /home/model-server/model-store/asl_classifier.mar
 
 # Serve model
-CMD [ "torchserve", "--start", "--ts-config", "/home/model-server/config.properties", "--model-store", "/home/model-server/model-store/", "--models", "asl_classifier.mar" ]
+CMD [ "torchserve", "--start", "--model-store", "/home/model-server/model-store/", "--models", "asl_classifier.mar" ]
 
