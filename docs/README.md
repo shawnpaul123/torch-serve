@@ -58,9 +58,9 @@ The returned json of the request contain a single list. Each i-th element of thi
 
 If there is less input images than the batch size, the rest of the inference batch will be padded with zeros inputs.
 
-Here is my Postman test. The JSON output is stored in `response.txt`.
+I inferenced 5 images using Postman. The JSON output is stored in `response.txt`.
 
-![Postman test](./images/postman.png)
+![Postman test](./images/postman.PNG)
 
 ## Notes:
 
