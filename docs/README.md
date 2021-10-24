@@ -37,6 +37,8 @@ This is a Dockerfile to run TorchServe for Yolov5 object detection model.
 
 Once the Docker image is running, you can send POST requests to: `localhost:8080/predictions/asl_classifier`.
 
+[Here](https://pytorch.org/serve/inference_api.html#inference-api) is a list of all available inference APIs we can use against the server (health ping, predictions, metrics, etc.).
+
 The handler in this project expect the inputs images to be sent via a Multipart form with a key:value form having in the keys the strings `img[index]` and in the values, the bytes of each images.
 
 Example:
@@ -55,6 +57,10 @@ The returned json of the request contain a single list. Each i-th element of thi
 `(x1, y1, x2, y2, conf, cls)`)
 
 If there is less input images than the batch size, the rest of the inference batch will be padded with zeros inputs.
+
+Here is my Postman test. The JSON output is stored in `response.txt`.
+
+![Postman test](./images/postman.png)
 
 ## Notes:
 
