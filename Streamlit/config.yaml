@@ -1,0 +1,2 @@
+azure_storage_connectionstring: "Put the connection string here"
+container_name: "receive-image"
