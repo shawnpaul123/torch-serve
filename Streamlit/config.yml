@@ -1,0 +1,5 @@
+---
+azure_storage_connectionstring: ""
+container_name : "receive-image"
+source_folder: "./img_postprocess"
+

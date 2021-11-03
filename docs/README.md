@@ -1,3 +1,7 @@
+# Streamlit App
+
+Refer to Streamlit folder for further instructions on how to run this
+
 # Yolov5 running on TorchServe
 
 This is a Dockerfile to run TorchServe for Yolov5 object detection model. 
