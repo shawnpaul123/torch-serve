@@ -1,8 +1,30 @@
-# Streamlit App
+# ASL to Text
 
-Refer to Streamlit folder for further instructions on how to run this
+<img src="https://github.com/shawnpaul123/torch-serve/blob/master/images/ASL.gif" width="400"/>
 
-# Yolov5 running on TorchServe
+To access our solution, please open the [Streamlit](https://github.com/shawnpaul123/torch-serve/tree/master/Streamlit) folder for further instructions. 
+
+# Introduction
+
+This project uses Machine Learning to caption videos of people communicating in ASL. The product is a web interface that users can interact with by uploading videos and receiving labelled videos as a result. It can be used by non ASL users to translate ASL. It is also our team's submission to the Pytorch Annual Hackathon.
+
+# Architecture
+
+### Machine Learning
+- Our model was trained using Pytorch using images in our [data/test](https://github.com/chandr-971/torch-serve/tree/data/test) folder. 
+- The completed model was then served using torch-serve and containerized in a docker container. (See Dockerfile)
+
+### Front End
+- Our team developed the front end on Streamlit. It receives videos from the user, converts them to frames and sends them to a blob storage in Microsoft Azure.
+- It then sends a HTTP request to the Backend to receive the results of the Machine Learning model. 
+
+### Backend
+- A logic app on Microsoft Azure was used to interact with the docker container deployed on Azure Container Instances. It sends images from the blob storage to the container and receives a result.
+- The result from the Container is then sent to the front end upon receiving the HTTP trigger.
+
+# Appendix
+
+## Yolov5 running on TorchServe
 
 This is a Dockerfile to run TorchServe for Yolov5 object detection model. 
 (TorchServe is a flexible and easy to use tool for serving deep learning models exported from PyTorch).
