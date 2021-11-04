@@ -12,6 +12,8 @@ This project uses Machine Learning to caption videos of people communicating in 
 
 ### Machine Learning
 - Our model was trained using Pytorch using images in our [data/test](https://github.com/chandr-971/torch-serve/tree/data/test) folder. 
+- For training, we used the public dataset 'American Sign Language Letters Dataset', which we obtained from roboflow.com.
+- This dataset was created and augmented by David Lee.
 - The completed model was then served using torch-serve and containerized in a docker container. (See Dockerfile)
 
 ### Front End
